@@ -103,7 +103,7 @@ n_1 x_1 + \cdots + n_m x_m + d = 0, \quad d=-n_1 p_1 - \cdots -n_mp_m \tag{stand
 \section{Basic Topology of $\vecspace{R}^n$}
 \paragraph{Open Ball} The open ball centered at $\bvec p \in \vecspace R^n$ of radius $r$ is
 \begin{equation*}
-    B_r^n (\bvec p) = \left\{\bvec x \in \vecspace{R}^n \ \vert \ \operatorname{dist} (\bvec x, \bvec p) < r \right\}
+    B_r^n (\bvec p) = \left\{\bvec x \in \vecspace{R}^n \ \big\vert \ \operatorname{dist} (\bvec x, \bvec p) < r \right\}
 \end{equation*}
 \paragraph{Open Set} $E\subseteq \mathbb R^n$ is an open set if for every point $\bvec p \in E$, there exists an $r>0$ such that $B^n_r \subseteq E$.
 \paragraph{Boundary Point} A point $\bvec p \in E$ is a boundary point if every open ball around $\bvec p$ contains both a point in $E$ and a point not in $E$.
@@ -200,17 +200,17 @@ or, by letting $\bvec n = \bvec{r}_u \times \bvec{r}_v$,
 \section{Local Extrema}
 \paragraph{Saddle Point} For $f: E \to \mathbb R$, $E\subset \mathbb R^n$, a saddle point is critical point $\bvec p$ at which $f$ is differentiable and $\nabla f(\bvec p) = \bvec 0$, which at which $f$ \emph{does not} attain a local extreme value.
 \paragraph{Hessian Matrix} Suppose $f=f(x,y)$ is $C^2$ and $\bvec p \in \mathbb R^2$. The Hessian matrix of $f$ at $\bvec p$ is the matrix \begin{equation*}
-    \bvec H(\bvec p) = \left.\begin{bmatrix}
+    \matr H(\bvec p) = \left.\begin{bmatrix}
         f_{xx} & f_{xy} \\ f_{yx} & f_{yy}
     \end{bmatrix}\right|_\bvec{p}
 \end{equation*}
-\paragraph{Non-Degeneracy} A point $\bvec p$ is a non-degenerate critical point if $\nabla f(\bvec p) = \bvec 0$ and $\det \bvec{H}(\bvec p) \neq 0$
+\paragraph{Non-Degeneracy} A point $\bvec p$ is a non-degenerate critical point if $\nabla f(\bvec p) = \bvec 0$ and $\det \matr{H}(\bvec p) \neq 0$
 \subsection{2nd Derivative Test}
 Suppose $f=f(x,y)$ is $C^2$ and $\bvec p$ is a non-degenerate point of $f$. Then,
 \begin{enumerate}[noitemsep]
-    \item If $\det \bvec{H}(\bvec p) > 0$ and $f_{xx}(\bvec p) > 0$, $f$ attains a local min.
-    \item If $\det \bvec{H}(\bvec p) > 0$ and $f_{xx}(\bvec p) < 0$, $f$ attains a local max.
-    \item If $\det \bvec{H}(\bvec p) < 0$, $f$ has a saddle point at $\bvec p$
+    \item If $\det \matr{H}(\bvec p) > 0$ and $f_{xx}(\bvec p) > 0$, $f$ attains a local min.
+    \item If $\det \matr{H}(\bvec p) > 0$ and $f_{xx}(\bvec p) < 0$, $f$ attains a local max.
+    \item If $\det \matr{H}(\bvec p) < 0$, $f$ has a saddle point at $\bvec p$
 \end{enumerate}
 
 
