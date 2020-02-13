@@ -35,6 +35,7 @@
 
 
 % Redefine section commands to use less space
+% NOTE - still to be tweak to maximize space with reasonable readbability
 \makeatletter
 \renewcommand{\section}{\@startsection{section}{1}{0mm}%
                                 {-1ex plus -.5ex minus -.2ex}%
@@ -44,15 +45,15 @@
                                 {-1explus -.5ex minus -.2ex}%
                                 {0.5ex plus .2ex}%
                                 {\normalfont\normalsize\bfseries}}
-% Custom - reduce font size of paragarphs
-\titleformat*{\paragraph}{\normalfont\small\bfseries}
-%\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
-%                                {-1ex plus -.5ex minus -.2ex}%
-%                                {1ex plus .2ex}%
-%                                {\normalfont\small\bfseries}}
+% Custom squishing for \paragraph
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+    {0.5ex \@plus1ex \@minus.2ex}%
+    {-1em}%
+    {\normalfont\small\bfseries}}
 
 % Don't print section numbers
 \setcounter{secnumdepth}{0}
+
 
 
 \setlength{\parindent}{0pt}
@@ -92,7 +93,8 @@
 \paragraph{Orthogonal Projection \& Vector Product Identities} \begin{gather*}
     \operatorname{proj}_\bvec{v} \bvec{F} = \left(\frac{\bvec F \cdot \bvec v}{\bvec v \cdot \bvec v}\right) \bvec v = \left(\frac{\bvec F \cdot \bvec v}{\|\bvec v\|^2}\right) \bvec v \\
     \bvec v \cdot \bvec w = \|\bvec v\|\|\bvec w\| \cos\theta = \|\bvec v\| \|\operatorname{proj}_\bvec{v} \bvec w\|  = \|\bvec w\| \|\operatorname{proj}_\bvec{w} \bvec v \| \\
-    \bvec v \times \bvec w = -( \bvec w \times \bvec v), \quad \| \bvec v \times \bvec w\| = \|\bvec v\|\|\bvec w\| \sin\theta
+    \bvec v \times \bvec w = -( \bvec w \times \bvec v), \quad \| \bvec v \times \bvec w\| = \|\bvec v\|\|\bvec w\| \sin\theta\\
+    ( \bvec v \times \bvec w) \cdot \bvec v = ( \bvec v \times \bvec w) \cdot \bvec w = \bvec 0
 \end{gather*}
 \subsection{Planes} A plane in $\mathbb R^m$ which contains the points $\bvec p=\langle p_1,\ldots,p_m \rangle$ and normal to the vector $\bvec n = \langle n_1,\ldots,n_m \rangle$ is given by
 \begin{gather*}
@@ -107,15 +109,26 @@ n_1 x_1 + \cdots + n_m x_m + d = 0, \quad d=-n_1 p_1 - \cdots -n_mp_m \tag{stand
 \end{gather*}
 \paragraph{Tangent Line} Given $\bvec p: \mathbb R \to\mathbb R^n$, the tangent line $L$ at $t=t_0$ is parameterized by $L(r) = \bvec p(t_0) + r \bvec p'(t_0)$.
 
-
 \section{Basic Topology of $\vecspace{R}^n$}
 \paragraph{Open Ball} The open ball centered at $\bvec p \in \vecspace R^n$ of radius $r$ is
 \begin{equation*}
     B_r^n (\bvec p) = \left\{\bvec x \in \vecspace{R}^n \ \vert \ \operatorname{dist} (\bvec x, \bvec p) < r \right\}
 \end{equation*}
+\paragraph{Open Set} $E\subseteq \mathbb R^n$ is an open set if for every point $\bvec p \in E$, there exists an $r>0$ such that $B^n_r \subseteq E$.
+\paragraph{Boundary Point} A point $\bvec p \in E$ is a boundary point if every open ball around $\bvec p$ contains both a point in $E$ and a point not in $E$.
 
+\paragraph{Closed Set }$E\subseteq \mathbb R^n$ is closed is it contains all of its boundary points.
 
-\paragraph{Open Set}
+\paragraph{Bounded Set} $E$ is bounded if there exists $r>0$ such that $B_r^n(\bvec 0)$ contains $E$.
+
+\paragraph{Compact Set} $E\subseteq \mathbb R^n$ is compact is it is both closed and bounded.
+
+\section{Linearization \& Linear Approximation}
+For $f: \vecspace{R}^n \to \vecspace{R}$, the linearization of $f$ about point $\bvec{p} \in \vecspace{R}^n$ is
+\begin{equation*}
+L_f(\bvec{x};\, \bvec{p}) = f(\bvec{p}) + \nabla f(\bvec p) \cdot (\bvec x - \bvec p)
+\end{equation*}
+\paragraph{Linear Approx.} $f(\bvec x) \approx L(\bvec{x};\, \bvec p)$ when $\bvec{x}$ near $\bvec p$.
 
 \section{Multivariable Derivatives}
 Given $f: \vecspace{R}^n \to \vecspace{R}$ where $f = f(\bvec x)$, the partial derivative of $f$ with respect to the $i$th component of $\bvec x$ is given by
@@ -131,13 +144,6 @@ Given $f: \vecspace{R}^n \to \vecspace{R}$ where $f = f(\bvec x)$, the partial d
 
 \paragraph{High Order Partial Derivatives}
 If $f_{xy}$ exists and is continuous at $\bvec p$, then $f_{xy}(\bvec p) = f_{yx}(\bvec p)$.
-
-\section{Linearization \& Linear Approximation}
-For $f: \vecspace{R}^n \to \vecspace{R}$, the linearization of $f$ about point $\bvec{p} \in \vecspace{R}^n$ is
-\begin{equation*}
-    L_f(\bvec{x};\, \bvec{p}) = f(\bvec{p}) + \nabla f(\bvec p) \cdot (\bvec x - \bvec p)
-\end{equation*}
-\paragraph{Linear Approx.} $f(\bvec x) \approx L(\bvec{x};\, \bvec p)$ when $\bvec{x}$ near $\bvec p$.
 
 \section{Differentiation Rules}
 Let $f,g: \vecspace{R}^n \to \vecspace{R}$ and $a,b \in \vecspace{R}$.
@@ -180,248 +186,45 @@ For a function $f: E \to \vecspace{R}$ where $E \subseteq \vecspace{R}^n$ and $k
 \end{equation*}
 When $F: \begin{array}{c}\mathbb R^2 \\ \mathbb R^3\end{array}\to\mathbb R$, the tangent set is call the \underline{tangent}  $\begin{array}{c}\text{\underline{line}} \\ \text{\underline{plane}}\end{array}$
 
-\
+\paragraph{Critical Point} For $F: \mathbb R^n \to \mathbb R$, a critical point of $F$ is a point $\bvec p$ where either 1) $\nabla F(\bvec p) = \bvec 0$ or 2) F is not differentiable.
+
+\section{Parameterizing Surfaces}
+Frequently see surfaces as\begin{enumerate}[noitemsep]
+    \item Graphs of functions $\mathbb R^2 \to \mathbb R$: z = f(x,y)
+    \item Level surfaces of functions $\mathbb R^3 \to \mathbb R$: F(x,y,z) = c
+\end{enumerate}
+\paragraph{General Notion} Produce a function $\bvec r : D \to \mathbb R^n$ where $D \subset \mathbb R^{n-1}$ and refer to the image as the parameterized surface.
+\paragraph{Regular Surfaces} A parameterization $\bvec r: D \to \mathbb R^3$, $D\subset \mathbb R^2$ is said to be (locally) regular at $\bvec p$ if 1) it is continuously differentiable (i.e. is $C^1$) at $\bvec  p$, and 2) all of the first order partial derivations of $\bvec r$ are linearly independent at $\bvec p$.
+
+\subsection{Tangent Planes to Surfaces}
+Consider the parameterization $\bvec r: D \to \mathbb R^3$, $D\subset \mathbb R^2$, with $\bvec p = \bvec{r}(u_0, v_0)$. The tangent plane to the surface at point $\bvec p$ is described by either
+\begin{equation*}
+(x,y,z) = \bvec{r}(u_0, v_0) + a\bvec{r}_u(u_0, v_0) + b\bvec{r}_v(u_0, v_0), \quad a,b\in\mathbb R
+\end{equation*}
+or, by letting $\bvec n = \bvec{r}_u \times \bvec{r}_v$,
+\begin{equation*}
+\bvec n \cdot (\bvec x - \bvec p) = \bvec 0
+\end{equation*}
+
+\section{Local Extrema}
+\paragraph{Saddle Point} For $f: E \to \mathbb R$, $E\subset \mathbb R^n$, a saddle point is critical point $\bvec p$ at which $f$ is differentiable and $\nabla f(\bvec p) = \bvec 0$, which at which $f$ \emph{does not} attain a local extreme value.
+\paragraph{Hessian Matrix} Suppose $f=f(x,y)$ is $C^2$ and $\bvec p \in \mathbb R^2$. The Hessian matrix of $f$ at $\bvec p$ is the matrix \begin{equation*}
+    \bvec H(\bvec p) = \left.\begin{bmatrix}
+        f_{xx} & f_{xy} \\ f_{yx} & f_{yy}
+    \end{bmatrix}\right|_\bvec{p}
+\end{equation*}
+\paragraph{Non-Degeneracy} A point $\bvec p$ is a non-degenerate critical point if $\nabla f(\bvec p) = \bvec 0$ and $\det \bvec{H}(\bvec p) \neq 0$
+\subsection{2nd Derivative Test}
+Suppose $f=f(x,y)$ is $C^2$ and $\bvec p$ is a non-degenerate point of $f$. Then,
+\begin{enumerate}[noitemsep]
+    \item If $\det \bvec{H}(\bvec p) > 0$ and $f_{xx}(\bvec p) > 0$, $f$ attains a local min.
+    \item If $\det \bvec{H}(\bvec p) > 0$ and $f_{xx}(\bvec p) < 0$, $f$ attains a local max.
+    \item If $\det \bvec{H}(\bvec p) < 0$, $f$ has a saddle point at $\bvec p$
+\end{enumerate}
 
 
 
-text
 
-text
 
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
-
-text
 \end{multicols}
 \end{document}
