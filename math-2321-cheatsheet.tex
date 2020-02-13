@@ -1,0 +1,427 @@
+\documentclass[10pt,landscape,letterpaper]{article}
+\usepackage{multicol}
+%\usepackage{calc}
+%\usepackage{ifthen}
+\usepackage[landscape]{geometry}
+\usepackage{amsmath,amsfonts,amssymb}
+%\usepackage{color,graphicx,overpic}
+%\usepackage{hyperref}
+%\usepackage{tabularx}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage{array}
+% For Lin Alg section
+%\usepackage{tikz}
+%\usetikzlibrary{calc}
+%\usepackage{mathtools}
+
+%
+% Styling inspired by tex.stackexchange user "Dror" in this posting:
+% https://tex.stackexchange.com/questions/8827/preparing-cheat-sheets
+%
+
+\thispagestyle{fancy}
+\cfoot{\footnotesize Copyright \textcopyright \ 2020 Brian Schubert}
+\rfoot{\footnotesize Revised 2020-02-12}
+\lhead{MATH 2321\\Calculus 3 for Science and Engineering}
+\rhead{Spring 2020 \\ Prof. Sumi Seo}
+%\chead{\large \underline{Midterm Exam ``Cheat Sheet"}}
+\renewcommand{\headrulewidth}{0pt}
+\setlength{\voffset}{-4pt}
+
+\geometry{top=0.7in,left=.4in,right=.4in,bottom=.6in}
+
+
+% Redefine section commands to use less space
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%x
+                                {\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+                                {-1explus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%
+                                {\normalfont\normalsize\bfseries}}
+% Custom - reduce font size of paragarphs
+\titleformat*{\paragraph}{\normalfont\small\bfseries}
+%\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+%                                {-1ex plus -.5ex minus -.2ex}%
+%                                {1ex plus .2ex}%
+%                                {\normalfont\small\bfseries}}
+
+% Don't print section numbers
+\setcounter{secnumdepth}{0}
+
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+
+% Notation Definitions
+\newcommand{\dd}[1]{\mathrm{d}#1}
+\newcommand{\diffop}[2][]{\frac{\dd#1}{\dd #2}}
+\newcommand{\pdiffop}[2][]{\frac{\partial #1}{\partial #2}}
+\newcommand{\matr}[1]{\mathbf{#1}}
+\newcommand{\bvec}[1]{\mathbf{#1}}
+\newcommand{\vecspace}[1]{\mathbb{#1}}
+\newcommand{\transp}{^\mathrm{T}}
+
+\newcommand\cheatsheetmargin{0.2cm}
+
+% -----------------------------------------------------------------------
+
+\begin{document}
+\raggedright
+\footnotesize
+\begin{multicols}{3}
+
+
+% multicol parameters
+% These lengths are set only within the two main columns
+%\setlength{\columnseprule}{0.25pt}
+\setlength{\premulticols}{1pt}
+\setlength{\postmulticols}{1pt}
+\setlength{\multicolsep}{1pt}
+\setlength{\columnsep}{2pt}
+
+%\begin{center}
+%     \Large{\underline{Preliminaries}} \\
+%\end{center}
+\section{Geometry in $\mathbb R^n$}
+\paragraph{Orthogonal Projection \& Vector Product Identities} \begin{gather*}
+    \operatorname{proj}_\bvec{v} \bvec{F} = \left(\frac{\bvec F \cdot \bvec v}{\bvec v \cdot \bvec v}\right) \bvec v = \left(\frac{\bvec F \cdot \bvec v}{\|\bvec v\|^2}\right) \bvec v \\
+    \bvec v \cdot \bvec w = \|\bvec v\|\|\bvec w\| \cos\theta = \|\bvec v\| \|\operatorname{proj}_\bvec{v} \bvec w\|  = \|\bvec w\| \|\operatorname{proj}_\bvec{w} \bvec v \| \\
+    \bvec v \times \bvec w = -( \bvec w \times \bvec v), \quad \| \bvec v \times \bvec w\| = \|\bvec v\|\|\bvec w\| \sin\theta
+\end{gather*}
+\subsection{Planes} A plane in $\mathbb R^m$ which contains the points $\bvec p=\langle p_1,\ldots,p_m \rangle$ and normal to the vector $\bvec n = \langle n_1,\ldots,n_m \rangle$ is given by
+\begin{gather*}
+\bvec{n}\cdot (\bvec x - \bvec p) = \bvec 0 \iff n_1(x_1 - p_1) + \cdots + n_m(x_m - p_m) = 0\tag{basic form}\\
+n_1 x_1 + \cdots + n_m x_m + d = 0, \quad d=-n_1 p_1 - \cdots -n_mp_m \tag{standard form}
+\end{gather*}
+\subsection{Lines}A line $\ell$ in $\mathbb R^n$ containing the point $\bvec p$ and is parallel to the vector $\bvec v$ is given by
+\begin{gather*}
+    \bvec x(t) = \bvec p + t\bvec v \tag{Vector Equation}\\
+    {x}_1 = p_1 + v_1 t, \ \ldots,\ {x}_n = p_n + v_n t \tag{Parametric Equation}\\
+    \frac{x_1 - p_1}{v_1} = \cdots = \frac{x_n - p_n}{v_n} \tag{Symmatric Equation}
+\end{gather*}
+\paragraph{Tangent Line} Given $\bvec p: \mathbb R \to\mathbb R^n$, the tangent line $L$ at $t=t_0$ is parameterized by $L(r) = \bvec p(t_0) + r \bvec p'(t_0)$.
+
+
+\section{Basic Topology of $\vecspace{R}^n$}
+\paragraph{Open Ball} The open ball centered at $\bvec p \in \vecspace R^n$ of radius $r$ is
+\begin{equation*}
+    B_r^n (\bvec p) = \left\{\bvec x \in \vecspace{R}^n \ \vert \ \operatorname{dist} (\bvec x, \bvec p) < r \right\}
+\end{equation*}
+
+
+\paragraph{Open Set}
+
+\section{Multivariable Derivatives}
+Given $f: \vecspace{R}^n \to \vecspace{R}$ where $f = f(\bvec x)$, the partial derivative of $f$ with respect to the $i$th component of $\bvec x$ is given by
+\begin{equation*}
+    f_{x_i}(\bvec p) = \left.\frac{\partial f}{\partial x_i}\right|_\bvec{p}
+        = \lim\limits_{h \to 0} \frac{f(\bvec p + h\hat{\mathbf{e}}_i)-f(\bvec p)}{h}
+\end{equation*}
+
+\paragraph{Gradient} For the function $f$ above, the gradient of $f$, $\nabla f: \vecspace{R}^2 \to \vecspace{R}^2$ is given by
+\begin{equation*}
+    \nabla f = \left\langle \pdiffop[f]{x_1}, \pdiffop[f]{x_2}, \ldots, \pdiffop[f]{x_n}  \right\rangle
+\end{equation*}
+
+\paragraph{High Order Partial Derivatives}
+If $f_{xy}$ exists and is continuous at $\bvec p$, then $f_{xy}(\bvec p) = f_{yx}(\bvec p)$.
+
+\section{Linearization \& Linear Approximation}
+For $f: \vecspace{R}^n \to \vecspace{R}$, the linearization of $f$ about point $\bvec{p} \in \vecspace{R}^n$ is
+\begin{equation*}
+    L_f(\bvec{x};\, \bvec{p}) = f(\bvec{p}) + \nabla f(\bvec p) \cdot (\bvec x - \bvec p)
+\end{equation*}
+\paragraph{Linear Approx.} $f(\bvec x) \approx L(\bvec{x};\, \bvec p)$ when $\bvec{x}$ near $\bvec p$.
+
+\section{Differentiation Rules}
+Let $f,g: \vecspace{R}^n \to \vecspace{R}$ and $a,b \in \vecspace{R}$.
+\begin{align*}
+    &\nabla( af + bg)  &=& a \nabla f + b \nabla g \tag{Linearity} \\
+    &\nabla(fg) &=& f \nabla g + g \nabla f \tag{Product Rule} \\
+    &\nabla(f/g) &=&\left(g\nabla f -  f \nabla g\right) / g^2 \tag{Quotient Rule}\\
+    &\nabla (f^\alpha) &=& \alpha f^{\alpha - 1} \nabla f \tag{Power Rule}
+\end{align*}
+\paragraph{Chain Rule} Let $f: \vecspace{R}^n \to \vecspace{R}$, $f=f(\bvec{x})$, and $\bvec x: \vecspace{R}^p \to \vecspace{R}^n$ where $\bvec{x} = \bvec{x}(\bvec{t})$. Then
+\begin{equation*}
+    \frac{\partial f}{\partial t_i} = \nabla f \cdot \frac{\partial \bvec x}{\partial t_i}
+\end{equation*}
+E.g. for $f:\mathbb R^3 \to \mathbb R$, $\bvec x = \bvec x(s,t)$, \begin{equation*}
+    f_s = f_x x_s + f_y y_s + f_z z_s
+\end{equation*}
+
+
+\section{Directional Derivative}
+Consider $f: \vecspace{R}^n \to \vecspace{R}$ and $\bvec p, \bvec u \in \vecspace{R}^n$ with $\|\bvec u\|=1$. The directional derivative of $f$ in the direction of $\bvec u$ (or, with respect to $\bvec u$) at point $\bvec p$ is given by
+\begin{equation*}
+    D_\bvec{u} f(\bvec p) = \nabla f(\bvec p) \cdot \bvec u, \qquad D_{\bvec{e}_i} f = \pdiffop[f]{x_i}
+\end{equation*}
+Note that the directional derivative attains it maximum, $\|\nabla f(\bvec p)\|$, when $\bvec u$ is the unit vector in the direction of the gradient of $f$.
+
+\section{Level Sets}
+For a function $f: E \to \vecspace{R}$ where $E \subseteq \vecspace{R}^n$ and $k \in \vecspace R$, the level set where $f=k$  (or, the set containing $\bvec p$ where $f(\bvec p)=k$) is the set
+\begin{equation*}
+\left\{ \bvec{x} \in E \ \big\vert \ f(\bvec x) = k \right\}
+\end{equation*}
+\begin{itemize}[leftmargin=*,noitemsep]
+    \item When $f:\mathbb R^2 \to \mathbb R$, the level set is called the \underline{``level curve"}.
+    \item When $f:\mathbb R^3 \to \mathbb R$, the level set is called the \underline{``level surface"}.
+    \item In general, the graph of a level surface of $f$ has one less dimensions that the graph of $f$.
+    \item The gradient of $f$ is $\perp$ to the tangent line of a level set.
+\end{itemize}
+
+\paragraph{Tangent Set} The tangent set to the level set where $F=F(\bvec p)$, $\bvec p \in \mathbb R^n$, is given by \begin{equation*}
+    \left\{  \bvec{x} \in \mathbb R^n \ \big\vert \ \nabla F(\bvec p) \cdot (\bvec x - \bvec p) = \bvec 0 \right\}
+\end{equation*}
+When $F: \begin{array}{c}\mathbb R^2 \\ \mathbb R^3\end{array}\to\mathbb R$, the tangent set is call the \underline{tangent}  $\begin{array}{c}\text{\underline{line}} \\ \text{\underline{plane}}\end{array}$
+
+\
+
+
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+
+text
+\end{multicols}
+\end{document}
