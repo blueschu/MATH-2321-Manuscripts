@@ -213,7 +213,120 @@ Suppose $f=f(x,y)$ is $C^2$ and $\bvec p$ is a non-degenerate point of $f$. Then
     \item If $\det \matr{H}(\bvec p) < 0$, $f$ has a saddle point at $\bvec p$
 \end{enumerate}
 
+\section{Optimization}
+To find all the global max/min values of a function $f=f(\vec x)$ on a compact set $D$:
+\begin{itemize}[leftmargin=*,noitemsep]
+    \item Find the values at the interior critical points
+    \item Find the extreme values on the boundary of of $D$
+    \item Note: No need to apply Hessian / 2nd Derivative Test
+\end{itemize}
 
+\subsection{Lagrange Multipliers}
+
+Given $f=f(\vec x)$, $g=g(\vec x)$ in $C^1$, a critical point subject to the constraint $g(\vec x) = c$ is a point $\vec x$ at which \begin{equation*}
+    g(\vec x) = c \quad \text{and} \quad \nabla f(\vec x) = \lambda \nabla g(\vec x)
+\end{equation*}
+The scalar $\lambda$ is called a Lagrange Multiplier.
+
+If $f$ attains a local max/min at $\vec p$, then $\vec p$ must be a critical point of $f$ subject to $g(\vec x) = c$
+
+\section{Multivariable Integration}
+\paragraph{Double Integrals}
+\begin{equation*}
+\iint_R f(x,y) \, \mathrm{d}A = \lim\limits_{n\to \infty} \sum_{k=1}^{n} f(\vec x_k)\Delta A, \quad \Delta A = \Delta x\Delta y
+\end{equation*}
+
+\paragraph{Fubini's Theorem} Suppose that $f=f(x, y)$ is continuous in the rectangle $R=[a,b]\times [c,d]$. The $f$ is Riemann integrable on $R$, and can be calculated via
+\begin{equation*}
+\iint_R f(x,y)\, \mathrm{d}A = \int_c^d \!\!\! \int_a^b\! f(x, y) \, \mathrm{d} x\, \mathrm{d}y = \int_a^b \!\!\! \int_c^d \! f(x, y) \, \mathrm{d} y\, \mathrm{d}x
+\end{equation*}
+
+\paragraph{Theorem} Let $R\subset \mathbb{R}^2$ be the region of points $(x,y)$ such that $x \in [a,b]$ and $p(x) \leq y \leq q(x)$. Then \begin{equation*}
+    \iint_R f(x,y) \, \mathrm{d}A = \int_a^b \!\!\! \int_{p(x)}^{q(x)} \! f(x,y) \,\mathrm{d}y\,\mathrm{d}x
+\end{equation*}
+
+\paragraph{Theorem} If $R=R_1 \cup R_2 $, then \begin{equation*}
+\iint_R f(x,y) \, \mathrm{d}A = \iint_{R_1} f(x,y) \, \mathrm{d}A + \iint_{R_2} f(x,y) \, \mathrm{d}A
+\end{equation*}
+
+\subsection{Polar Coordinates}
+
+\begin{gather*}
+\mathrm{d}A = r\,\mathrm{d}\theta\,\mathrm{d}r = r\,\mathrm{d}r\,\mathrm{d}\theta 
+\intertext{where}
+x = r\cos \theta, \quad y=r\sin\theta, \quad r \geq 0, \quad \theta \in [0, 2\pi)
+\intertext{so}
+\iint_R f(x,y)\,\mathrm{d}A = \iint_R f(r\cos\theta, r\sin\theta) \,r\,\mathrm{d}r\,\mathrm{d}\theta
+\end{gather*}
+
+\section{Integration in $\mathbb R^3$}
+
+\paragraph{Triple Integral} The triple integral of $f=f(x,y,z)$ over the solid $S$ in $\mathbb R^3$ is
+\begin{equation*}
+\iiint_S f(x,y,z)\,\mathrm{d}V = \lim\limits_{n\to \infty} \sum_{k=1}^{n} f(\vec s_k)\Delta V, \ \ \begin{array}{c} \vec s_k = (x_k, y_k, z_k) = \text{``tiny box"} \\ \Delta V = \Delta x\Delta y\Delta z \end{array}
+\end{equation*}
+\paragraph{Theorem} If the solid $S$ is given by \begin{gather*}
+p(x,y) \leq z \leq q(x,y), \quad u(x) \leq y \leq v(x), a \leq x \leq b
+\intertext{then}
+\iiint_S f(x,y,z)\,\mathrm{d}V =  \int_a^b \!\!\! \int_{u(x)}^{v(x)} \!\!\! \int_{p(x,y)}^{q(x,y)} \! f(x,y,z) \,\mathrm{d}z\,\mathrm{d}y\,\mathrm{d}x
+\end{gather*}
+
+\subsection{Volume of a Solid}
+\begin{equation*}
+(\text{volume of $S$}) = \iiint_S \,\mathrm{d}V
+\end{equation*}
+
+\section{Cylindrical and Spherical Coordinates}
+\paragraph{Cylindrical Coordinates}\begin{gather*}
+\mathrm{d}V = r\,\mathrm{d}z \,\mathrm{d}r\,\mathrm{d}\theta 
+\intertext{where}
+x = r\cos \theta, \quad y=r\sin\theta, \quad z=z
+\intertext{so}
+\iiint_R f(x,y,z)\,\mathrm{d}V = \iiint_R f(r\cos\theta, r\sin\theta, z) \,r\,\mathrm{d}z\,\mathrm{d}r\,\mathrm{d}\theta
+\end{gather*}
+
+\paragraph{Spherical Coordinates}\begin{gather*}
+\mathrm{d}V = \rho^2 \sin \phi \,\mathrm{d}\rho \,\mathrm{d}\phi\,\mathrm{d}\theta 
+\intertext{where}
+x = \rho \sin\phi \cos \theta , \quad y=\rho \sin \phi \sin\theta, \quad z= \rho \cos \phi \\
+(r=\rho \sin \phi, \quad r^2 + z^2 = x^2 + y^2 + z^2 = \rho^2)
+\intertext{so}
+\iiint_R f(x,y,z)\,\mathrm{d}V = \iiint_R f(r\cos\theta, r\sin\theta, z) \,r\,\mathrm{d}z\,\mathrm{d}r\,\mathrm{d}\theta
+\end{gather*}
+
+\section{Density and Mass}
+
+Suppose that an (ideal) 2-dimensional plate occupies a region $R\subset \mathbb R^2$, and that $\delta_{\mathrm{ar}}=\delta_{\mathrm{ar}}(x, y)$ gives the area-density (mass per unit area) at each point. Then, an infinitesimal piece of mass (an element of mass) is $\mathrm{d}m = \delta_{\mathrm{ar}}(x,y)\,\mathrm{d}A$. Consequently, 
+\begin{equation*}
+    (\text{mass}) = \iint_R \mathrm{d}m = \iint_R \delta_{\mathrm{ar}}(x,y)\,\mathrm{d}A
+\end{equation*} 
+Likewise, for $R\subset \mathbb R^3$
+\begin{equation*}
+(\text{mass}) = \iiint_S \mathrm{d}m = \iiint_R \delta(x,y,z)\,\mathrm{d}V
+\end{equation*} 
+
+\section{Surface Area}
+Given a (basic) parameterization $\vec r: D \to \mathbb R^3$, $\vec r = \vec r(u,v)$, for a surfae, an \underline{element of area} on the surfae is given by \begin{gather*}
+\mathrm{d}S = \|\vec r_u \times \vec r_v \| \,\mathrm{d}u\,\mathrm{d}v
+\intertext{and the surface area pf the surface parameterized by $\vec r$ is}
+(\text{SA}) = \iint_D \mathrm{d}S = \iint_D \|\vec r_u \times \vec r_v \| \,\mathrm{d}u\,\mathrm{d}v 
+\end{gather*}
+
+\paragraph{Surface Area of Graph}
+In the special case when the parameterized surface is given by the graph of a function, i.e. $z=f(x,y)$, we have \begin{equation*}
+\vec r(u,v) = (u,v,f(x,y))
+\end{equation*}
+
+If $f$ is continuously differentiable, then so is $\vec r$.
+
+The graph $M$ of $f: D\to \mathrm R$ is a surface with a basic parameterization $\vec r :D \to \mathrm R^3$ given by
+\begin{gather*}
+\vec r_u \times \vec r_v = (1,0, f_x) \times (0, 1, f_y) = (-f_x, -f_y, 1)
+\intertext{so the element of area is}
+\mathrm{d}S = \|\vec r_u \times \vec r_v \| \,\mathrm{d}u\,\mathrm{d}v = \sqrt{f_x^2 + f_y^2 + 1}\mathrm{d}y\,\mathrm{d}x
+\intertext{and the surface area of $M$ is}
+\iint_D =  \sqrt{f_x^2 + f_y^2 + 1}\mathrm{d}y\,\mathrm{d}x
+\end{gather*}
 
 
 
