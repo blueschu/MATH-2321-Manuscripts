@@ -2,6 +2,7 @@
 \usepackage{multicol}
 \usepackage[landscape]{geometry}
 \usepackage{amsmath,amsfonts,amssymb}
+\usepackage{mathtools}
 \usepackage{fancyhdr}
 \usepackage{enumitem}
 \usepackage{tabularx}
@@ -221,6 +222,14 @@ To find all the global max/min values of a function $f=f(\vec x)$ on a compact s
     \item Note: No need to apply Hessian / 2nd Derivative Test
 \end{itemize}
 
+\newpage
+
+\thispagestyle{fancy}
+\cfoot{\footnotesize Copyright \textcopyright \ 2020 Brian Schubert}
+\rfoot{\footnotesize Revised 2020-04-21}
+\lhead{MATH 2321\\Calculus 3 for Science and Engineering}
+\rhead{Spring 2020 \\ Dr. Sumi Seo}
+
 \subsection{Lagrange Multipliers}
 
 Given $f=f(\vec x)$, $g=g(\vec x)$ in $C^1$, a critical point subject to the constraint $g(\vec x) = c$ is a point $\vec x$ at which \begin{equation*}
@@ -253,9 +262,9 @@ If $f$ attains a local max/min at $\vec p$, then $\vec p$ must be a critical poi
 
 \begin{gather*}
 \mathrm{d}A = r\,\mathrm{d}\theta\,\mathrm{d}r = r\,\mathrm{d}r\,\mathrm{d}\theta 
-\intertext{where}
+\shortintertext{where}
 x = r\cos \theta, \quad y=r\sin\theta, \quad r \geq 0, \quad \theta \in [0, 2\pi)
-\intertext{so}
+\shortintertext{so}
 \iint_R f(x,y)\,\mathrm{d}A = \iint_R f(r\cos\theta, r\sin\theta) \,r\,\mathrm{d}r\,\mathrm{d}\theta
 \end{gather*}
 
@@ -263,11 +272,11 @@ x = r\cos \theta, \quad y=r\sin\theta, \quad r \geq 0, \quad \theta \in [0, 2\pi
 
 \paragraph{Triple Integral} The triple integral of $f=f(x,y,z)$ over the solid $S$ in $\mathbb R^3$ is
 \begin{equation*}
-\iiint_S f(x,y,z)\,\mathrm{d}V = \lim\limits_{n\to \infty} \sum_{k=1}^{n} f(\vec s_k)\Delta V, \ \ \begin{array}{c} \vec s_k = (x_k, y_k, z_k) = \text{``tiny box"} \\ \Delta V = \Delta x\Delta y\Delta z \end{array}
+\iiint_S\! f(x,y,z)\,\mathrm{d}V \!=\!\! \lim\limits_{n\to \infty} \sum_{k=1}^{n}\! f(\vec s_k)\Delta V,\! \begin{array}{c} \vec s_k =\! (x_k,\! y_k,\! z_k\!) =\! \text{``tiny box"} \\ \Delta V = \Delta x\Delta y\Delta z \end{array}
 \end{equation*}
 \paragraph{Theorem} If the solid $S$ is given by \begin{gather*}
-p(x,y) \leq z \leq q(x,y), \quad u(x) \leq y \leq v(x), a \leq x \leq b
-\intertext{then}
+p(x,y) \leq z \leq q(x,y), \quad u(x) \leq y \leq v(x),\quad a \leq x \leq b
+\shortintertext{then}
 \iiint_S f(x,y,z)\,\mathrm{d}V =  \int_a^b \!\!\! \int_{u(x)}^{v(x)} \!\!\! \int_{p(x,y)}^{q(x,y)} \! f(x,y,z) \,\mathrm{d}z\,\mathrm{d}y\,\mathrm{d}x
 \end{gather*}
 
@@ -276,39 +285,51 @@ p(x,y) \leq z \leq q(x,y), \quad u(x) \leq y \leq v(x), a \leq x \leq b
 (\text{volume of $S$}) = \iiint_S \,\mathrm{d}V
 \end{equation*}
 
-\section{Cylindrical and Spherical Coordinates}
-\paragraph{Cylindrical Coordinates}\begin{gather*}
-\mathrm{d}V = r\,\mathrm{d}z \,\mathrm{d}r\,\mathrm{d}\theta 
-\intertext{where}
-x = r\cos \theta, \quad y=r\sin\theta, \quad z=z
-\intertext{so}
-\iiint_R f(x,y,z)\,\mathrm{d}V = \iiint_R f(r\cos\theta, r\sin\theta, z) \,r\,\mathrm{d}z\,\mathrm{d}r\,\mathrm{d}\theta
-\end{gather*}
 
-\paragraph{Spherical Coordinates}\begin{gather*}
-\mathrm{d}V = \rho^2 \sin \phi \,\mathrm{d}\rho \,\mathrm{d}\phi\,\mathrm{d}\theta 
-\intertext{where}
-x = \rho \sin\phi \cos \theta , \quad y=\rho \sin \phi \sin\theta, \quad z= \rho \cos \phi \\
-(r=\rho \sin \phi, \quad r^2 + z^2 = x^2 + y^2 + z^2 = \rho^2)
-\intertext{so}
-\iiint_R f(x,y,z)\,\mathrm{d}V = \iiint_R f(r\cos\theta, r\sin\theta, z) \,r\,\mathrm{d}z\,\mathrm{d}r\,\mathrm{d}\theta
-\end{gather*}
+\columnbreak
+
+\begin{minipage}{\columnwidth}
+
+\section{Cylindrical and Spherical Coordinates}
+{% REALLY REALLY squish equations, beyond what \shortintertext offers
+    \setlength{\belowdisplayskip}{-2pt}%
+    \setlength{\abovedisplayskip}{0pt}%
+    \paragraph{Cylindrical Coordinates}\begin{equation*}
+    \mathrm{d}V = r\,\mathrm{d}z \,\mathrm{d}r\,\mathrm{d}\theta
+    \end{equation*}where\begin{equation*}
+    x = r\cos \theta, \quad y=r\sin\theta, \quad z=z
+    \end{equation*}so\begin{equation*}
+    \iiint_R f(x,y,z)\,\mathrm{d}V = \iiint_R f(r\cos\theta, r\sin\theta, z) \,r\,\mathrm{d}z\,\mathrm{d}r\,\mathrm{d}\theta
+    \end{equation*}
+}
+
+\paragraph{Spherical Coordinates}
+{% REALLY REALLY squish equations, beyond what \shortintertext offers
+    \setlength{\belowdisplayskip}{-2pt}%
+    \setlength{\abovedisplayskip}{0pt}%
+    \begin{equation*}
+    \mathrm{d}V = \rho^2 \sin \phi \,\mathrm{d}\rho \,\mathrm{d}\phi\,\mathrm{d}\theta 
+    \end{equation*}where\begin{gather*}
+    x = \rho \sin\phi \cos \theta , \quad y=\rho \sin \phi \sin\theta, \quad z= \rho \cos \phi \\
+    (r=\rho \sin \phi, \quad r^2 + z^2 = x^2 + y^2 + z^2 = \rho^2)
+    \end{gather*}so\begin{equation*}
+    \iiint_R f(x,y,z)\,\mathrm{d}V = \iiint_R f(r\cos\theta, r\sin\theta, z) \,r\,\mathrm{d}z\,\mathrm{d}r\,\mathrm{d}\theta
+    \end{equation*}
+}
 
 \section{Density and Mass}
 
 Suppose that an (ideal) 2-dimensional plate occupies a region $R\subset \mathbb R^2$, and that $\delta_{\mathrm{ar}}=\delta_{\mathrm{ar}}(x, y)$ gives the area-density (mass per unit area) at each point. Then, an infinitesimal piece of mass (an element of mass) is $\mathrm{d}m = \delta_{\mathrm{ar}}(x,y)\,\mathrm{d}A$. Consequently, 
-\begin{equation*}
+\begin{gather*}
     (\text{mass}) = \iint_R \mathrm{d}m = \iint_R \delta_{\mathrm{ar}}(x,y)\,\mathrm{d}A
-\end{equation*} 
-Likewise, for $R\subset \mathbb R^3$
-\begin{equation*}
-(\text{mass}) = \iiint_S \mathrm{d}m = \iiint_R \delta(x,y,z)\,\mathrm{d}V
-\end{equation*} 
+\shortintertext{Likewise, for $R\subset \mathbb R^3$}
+    (\text{mass}) = \iiint_S \mathrm{d}m = \iiint_R \delta(x,y,z)\,\mathrm{d}V
+\end{gather*} 
 
 \section{Surface Area}
 Given a (basic) parameterization $\vec r: D \to \mathbb R^3$, $\vec r = \vec r(u,v)$, for a surfae, an \underline{element of area} on the surfae is given by \begin{gather*}
 \mathrm{d}S = \|\vec r_u \times \vec r_v \| \,\mathrm{d}u\,\mathrm{d}v
-\intertext{and the surface area pf the surface parameterized by $\vec r$ is}
+\shortintertext{and the surface area pf the surface parameterized by $\vec r$ is}
 (\text{SA}) = \iint_D \mathrm{d}S = \iint_D \|\vec r_u \times \vec r_v \| \,\mathrm{d}u\,\mathrm{d}v 
 \end{gather*}
 
@@ -322,13 +343,106 @@ If $f$ is continuously differentiable, then so is $\vec r$.
 The graph $M$ of $f: D\to \mathrm R$ is a surface with a basic parameterization $\vec r :D \to \mathrm R^3$ given by
 \begin{gather*}
 \vec r_u \times \vec r_v = (1,0, f_x) \times (0, 1, f_y) = (-f_x, -f_y, 1)
-\intertext{so the element of area is}
+\shortintertext{so the element of area is}
 \mathrm{d}S = \|\vec r_u \times \vec r_v \| \,\mathrm{d}u\,\mathrm{d}v = \sqrt{f_x^2 + f_y^2 + 1}\mathrm{d}y\,\mathrm{d}x
-\intertext{and the surface area of $M$ is}
-\iint_D =  \sqrt{f_x^2 + f_y^2 + 1}\mathrm{d}y\,\mathrm{d}x
+\shortintertext{and the surface area of $M$ is}
+\iint_D =  \sqrt{f_x^2 + f_y^2 + 1}\,\mathrm{d}y\,\mathrm{d}x
+\end{gather*}
+\end{minipage}
+
+\columnbreak
+
+
+\begin{minipage}{\columnwidth}
+\section{Vector Fields}
+A vector fields on an open set $U \subset \mathbb{R}^n$ is a function $\vec F: U \to \mathbb{R}^n$ where for each $\vec p \in U$, $\vec F(\vec p)$ is ``considered as a vector based at $\vec p $''. I.e. a vector field is a function which assigns a vector to every point in $U$.
+
+\paragraph{Conservative VF}
+Given $f=f(\vec{x})$, $f:\mathbb{R}^n \to \mathbb{R}$
+\begin{itemize}[leftmargin=*,noitemsep]
+    \item $\nabla f$ is a gradient vector field.
+    \item $\vec{F}=\nabla f$ is called a conservative vector field.
+    \item $f$ is called a potential function.
+\end{itemize}
+$\vec{F}$ is conservative if and only if $\nabla\times\vec{F}=\vec{0}$.
+
+\paragraph{Divergence} Given $\vec{F}=\vec{F}(\vec{x}) = \big\langle F_1 (\vec{x}), F_2 (\vec{x}), \ldots, F_n (\vec{x}) \big\rangle$,
+\begin{equation*}
+\operatorname{div} \vec{F} = \nabla\cdot\vec{F}= \pdiffop[F_1]{x_1} + \pdiffop[F_2]{x_2} + \cdots + \pdiffop[F_n]{x_n} = \sum_{i=1}^n \pdiffop[F_i]{x_i}
+\end{equation*}
+
+\paragraph{Curl} Given $\vec{F}(\vec{x}) = \big\langle P(x,y,z), Q(z,y,z), R(x,y,Z) \big\rangle$,
+\begin{equation*}
+\operatorname{curl} \vec{F} = \nabla \times \vec{F} = \begin{vmatrix}
+\hat{i} & \hat{j} & \hat{k} \\
+\pdiffop{x} & \pdiffop{y} & \pdiffop{z} \\
+P & Q & R
+\end{vmatrix} = \big\langle R_y - Q_z,  - (R_x - P_z),  Q_x - P_y\big\rangle
+\end{equation*}
+For $\vec{F}: \mathbb{R}^2 \to \mathbb{R}^2$, $\operatorname{curl}\vec{F} = Q_x - P_y$.
+
+\section{Line Integrals}
+Suppose $\vec{F}$ is a continuous VF on $\mathbb{R}^n$, $\vec{r}: [a,b] \to \mathbb{R}^n$ is a regular parameterization of a curve, and $C$ is the oriented curve from $\vec{r}(a)$ to $\vec{r}(b)$ defined by $\vec{r}$. Then the line integral of $\vec{F}$ along $C$ is
+\begin{equation*}
+\int_C \vec{F}\cdot\mathrm{d}\vec{r} = \int_a^b \vec{F}(\vec{r}(t))\cdot \vec{r'}(t)\,\mathrm{d}t
+\end{equation*}
+If $\vec{F}$ is a force field, $\int_C \vec{F}\cdot\mathrm{d}\vec{r}$ is the work done by $\vec{F}$ along $C$.
+\paragraph{Fundamental Theorem of Line Integral}
+Let $\vec{F}$ be a conservative VF with potential function $f$, and $C$ be an oriented curve from $\vec a$ to $\vec b$ defined by $\vec{r}: [t_0, t_1]\to \mathbb{R}^n$ with $\vec{r}{t_0} = \vec a$ and $\vec{r}(t_1)=\vec b$. Then,
+\begin{equation*}
+\int_C \vec{F}\cdot\mathrm{d}\vec{r} = f(\vec{b}) -f(\vec{a})
+\end{equation*}
+
+\paragraph{Green's Theorem}
+\begin{itemize}[leftmargin=*,noitemsep]
+    \item A simple closed curve in $\mathbb{R}^n$ is a closed curve that does not intersect itself.
+    \item Let $R$ be a compact region bounded by the simple closed curve $C$. We say that $\partial R = C$ is given the positive orientation if it is oriented counter-clockwise.
+\end{itemize}
+Let $R$ be a region in $\mathbb{R}^2$ and $\partial R$ be the positive oriented boundary. Let $\vec{F}=(P, Q)$ be a VF in $\mathbb{R}^2$. Then \begin{equation*}
+\int_C \vec{F}\cdot\mathrm{d}\vec{r} = \int_{\partial R} \vec{F}\cdot\mathrm{d}\vec{r} = \iint_R \left(Q_x - P_y\right)\,\mathrm{d}A.
+\end{equation*}
+\end{minipage}
+
+\newpage
+
+\thispagestyle{fancy}
+\cfoot{\footnotesize Copyright \textcopyright \ 2020 Brian Schubert}
+\rfoot{\footnotesize Revised 2020-04-21}
+\lhead{MATH 2321\\Calculus 3 for Science and Engineering}
+\rhead{Spring 2020 \\ Dr. Sumi Seo}
+
+\begin{minipage}{\columnwidth}
+% Extra squish all new entries
+%\setlength{\belowdisplayskip}{-2pt}%
+%\setlength{\abovedisplayskip}{2pt}%
+
+\section{Flux Through a Surface}
+\paragraph{Notation}Let $M$ be the surface parameterized by $\vec{r}: D\to\mathbb{R}^3$, $\vec{V}$ be a VF representing the flow of fluid (flux), and $\vec{n}$ be a unit normal vector to each point of $M$.
+\paragraph{Oriented Surface} A surface $M$ is oriented if $M$ has two sides and one of them has been designed to be the positive side and it is possible to choose a unit normal vector $\vec{n}$ at every point so that $\vec{n}$ varies continuously over $M$. The given choice of $M$ provides $M$ with an orientation.
+\paragraph{Closed Surface} A closed surface is a surface which is the boundary of a solid region. E.g. a sphere is the boundary of a ball.
+\paragraph{Flux} The flux of a fluid through a surface is determined by the component of $\vec{V}$ that is in the direction of $\vec{n}$, i.e. $\vec{v}\cdot\vec{n}$:
+\begin{gather*}
+(\text{flux of $\vec{V}$ over $M$}) = \iint_M \vec{V}\cdot\vec{n}\,\mathrm{d}S
+\shortintertext{where}
+\vec{n}=\frac{\vec{r}_u \times \vec{r}_v}{\|\vec{r}_u \times \vec{r}_v \|}, \quad \mathrm{d}S = \| \vec{r}_u \times \vec{r}_v\|\mathrm{d}u\,\mathrm{d}v
 \end{gather*}
 
+\subsection{Divergence Theorem}
+Suppose $M$ is a closed surface, $E$ is a solid region in $\mathbb{R}^3$ with $M=\partial E$ that is oriented outward, and $\vec{F}$ is a VF in $\mathbb{R}^3$. Then,
+\begin{equation*}
+(\text{flux}) = \iint_M \vec{F}\cdot\vec{n}\,\mathrm{d}S = \iint_{\partial E} \vec{F}\cdot\vec{n}\,\mathrm{d}S = \iiint_E \operatorname{div}\vec{F}\,\mathrm{d}V
+\end{equation*}
+
+\subsection{Stoke's Theorem}
+\begin{itemize}[leftmargin=*,noitemsep]
+    \item For calculating line integral along closed curve in $\mathbb{R}^3$ 
+    \item ``3D analog of Green's Theorem''.
+\end{itemize}
+
+Document incomplete.
 
 
+
+\end{minipage}
 \end{multicols}
 \end{document}
